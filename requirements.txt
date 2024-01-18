@@ -1,0 +1,6 @@
+langchain
+python-dotenv
+redis
+redisvl
+transformers
+langchain-experimental
