@@ -3,3 +3,4 @@ venv
 functions.json
 personality.txt
 __pycache__
+sys_prompt.txt
