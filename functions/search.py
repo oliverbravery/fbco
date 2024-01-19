@@ -6,8 +6,9 @@ from langchain.chains.llm import LLMChain
 from langchain.prompts import PromptTemplate
 
 class SearchFunction(BaseFunction):
-    def __init__(self, model: str):
+    def __init__(self, model: str, personality: str = ""):
         self.llm = Ollama(model=model)
+        self.personaility: str = personality
         super().__init__(name="search", 
                          description="Search the internet for information. Should be used for fact checking and research.", 
                          parameters=[
@@ -21,7 +22,7 @@ class SearchFunction(BaseFunction):
                          ])
         
     def __summarise_results(self, query: str, results: list) -> str:
-        prompt_template = "Respond to the users query with a concise summary of the search results: \n users query: "+query+" \nsearch results: {results} \nCONCISE SUMMARY:"
+        prompt_template = self.personaility+"\nRespond to the users query with a concise summary of the search results: \n users query: "+query+" \nsearch results: {results} \nCONCISE SUMMARY:"
         prompt = PromptTemplate.from_template(prompt_template)
         chain = StuffDocumentsChain(llm_chain=LLMChain(llm=self.llm, prompt=prompt), document_variable_name="results")
         return chain.run(results)
