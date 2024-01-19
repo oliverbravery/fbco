@@ -7,8 +7,8 @@ class ChatOllamaFunctions:
     model: OllamaFunctions
     functions: list[BaseFunction]
     
-    def __init__(self, functions: list[BaseFunction], model: str):
-        self.model = OllamaFunctions(model=model)
+    def __init__(self, functions: list[BaseFunction], model: str, prompt_template: str = None):
+        self.model = OllamaFunctions(model=model, tool_system_prompt_template=prompt_template)
         self.functions = []
         self.__load_functions(_functions=functions)
         

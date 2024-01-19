@@ -18,15 +18,22 @@ def load_personality() -> str:
         personality = f.read()
     return personality
 
+def load_system_prompt_template() -> str:
+    template: str = ""
+    with open(os.getenv("SYS_PROMPT_FILE")) as f:
+        template = f.read()
+    return template
+
 MODEL = os.getenv("MODEL")
 funcs = json_to_functions(func_json=func_json)
 chat_llm: ChatOllamaFunctions = ChatOllamaFunctions(
     functions=[
         weather.WeatherFunction(), 
         chat.ChatFunction(personality=load_personality()),
-        search.SearchFunction(model=MODEL)
+        search.SearchFunction(model=MODEL, personality=load_personality())
         ], 
-    model=MODEL)
+    model=MODEL,
+    prompt_template=load_system_prompt_template())
 
-print(f'{chat_llm.run("How are you today?")}')
+print(f'{chat_llm.run("Whos the pm of the uk?")}')
 
