@@ -1,3 +1,5 @@
 venv
 .env
 functions.json
+personality.txt
+__pycache__
