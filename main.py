@@ -4,13 +4,7 @@ import os
 load_dotenv(override=True)
         
 from ChatOllamaFunctions import ChatOllamaFunctions
-from Function import json_to_functions
 from functions import weather, chat, search
-import json
-
-func_json = None
-with open(os.getenv("FUNC_FILE")) as f:
-    func_json = json.load(f)
     
 def load_personality() -> str:
     personality: str = ""
@@ -25,7 +19,6 @@ def load_system_prompt_template() -> str:
     return template
 
 MODEL = os.getenv("MODEL")
-funcs = json_to_functions(func_json=func_json)
 chat_llm: ChatOllamaFunctions = ChatOllamaFunctions(
     functions=[
         weather.WeatherFunction(), 
@@ -34,6 +27,4 @@ chat_llm: ChatOllamaFunctions = ChatOllamaFunctions(
         ], 
     model=MODEL,
     prompt_template=load_system_prompt_template())
-
-print(f'{chat_llm.run("Whos the pm of the uk?")}')
 
