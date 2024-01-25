@@ -54,7 +54,7 @@ class SearchFunction(BaseFunction):
         prompt_template: str = self.personaility+"\nRespond to the users query with a concise summary of the search results: \n users query: "+query+" \nsearch results: {results} \nCONCISE SUMMARY:"
         prompt: PromptTemplate = PromptTemplate.from_template(prompt_template)
         chain: StuffDocumentsChain = StuffDocumentsChain(llm_chain=LLMChain(llm=self.llm, prompt=prompt), document_variable_name="results")
-        return chain.run(results)
+        return chain.invoke(results)['output_text']
         
     def __call__(self, arguments: dict) -> str:
         """
