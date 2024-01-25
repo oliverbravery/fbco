@@ -22,6 +22,7 @@ class Property:
     def __init__(self, name: str, type: PropertyType, attribute: dict):
         """
         Instantiates a new Property object with the given name, type and attribute.
+        
         Args:
             name (str): The name of the property.
             type (PropertyType): The type of the property.
@@ -34,6 +35,7 @@ class Property:
     def __dict__(self) -> dict:
         """
         Returns the Property object as a dictionary.
+        
         Returns:
             dict: The Property object as a dictionary.
         """
@@ -49,6 +51,7 @@ class Parameter:
     def __init__(self, type: ParameterType, properties: list[Property], required_parameters: list[str]):
         """
         Instantiates a new Parameter object with the given type, properties and required_parameters.
+        
         Args:
             type (ParameterType): The type of the parameter.
             properties (list[Property]): The properties of the parameter.
@@ -61,6 +64,7 @@ class Parameter:
     def __dict__(self) -> dict:
         """
         Returns the Parameter object as a dictionary.
+        
         Returns:
             dict: The Parameter object as a dictionary.
         """
@@ -77,6 +81,7 @@ class BaseFunction:
     def __init__(self, name: str, description: str, parameters: list[Parameter]):
         """
         Instantiates a new BaseFunction object with the given name, description and parameters.
+        
         Args:
             name (str): The name of the function.
             description (str): The description of the function for the llm.
@@ -89,6 +94,7 @@ class BaseFunction:
     def __dict__(self) -> dict:
         """
         Returns the BaseFunction object as a dictionary.
+        
         Returns:
             dict: The BaseFunction object as a dictionary.
         """
@@ -103,6 +109,7 @@ class BaseFunction:
         The __call__ method is called when the llm chooses to invoke the function.
         This function should contain the logic to be called if this function is selected 
         by the llm. Override this method in your derived function's class.
+        
         Returns:
             any: The value returned to the llm after the function has been invoked.
         """
@@ -111,6 +118,7 @@ class BaseFunction:
 def json_to_function(func_json: dict) -> BaseFunction:
     """
     json_to_function is a function that converts a json object into a BaseFunction object.
+    
     Args:
         func_json (dict): The json object to convert.
 
@@ -122,6 +130,7 @@ def json_to_function(func_json: dict) -> BaseFunction:
 def json_to_functions(func_json: dict) -> list[BaseFunction]:
     """
     json_to_functions is a function that converts a json object into a list of BaseFunction objects.
+    
     Args:
         func_json (dict): The json object to convert.
 
@@ -133,6 +142,7 @@ def json_to_functions(func_json: dict) -> list[BaseFunction]:
 def functions_to_json(funcs: list[BaseFunction]) -> list[dict]:
     """
     functions_to_json is a function that converts a list of BaseFunction objects into a list of json objects.
+    
     Args:
         funcs (list[BaseFunction]): The list of BaseFunction objects to convert.
 
