@@ -10,6 +10,7 @@ from functions import weather, chat, search
 def load_from_template(path: str) -> str:
     """
     Load a template from a file and return it as a string.
+    
     Args:
         path (str): The path to the template file.
 
