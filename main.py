@@ -21,7 +21,7 @@ def load_from_template(path: str) -> str:
         template = f.read()
     return template
 
-MODEL = os.getenv("MODEL")
+MODEL: str = os.getenv("MODEL")
 
 # Load the templates from the files.
 personality_template: str = load_from_template(os.getenv("PERSONALITY_FILE"))
