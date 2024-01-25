@@ -38,3 +38,5 @@ chat_llm: ChatOllamaFunctions = ChatOllamaFunctions(
     model=MODEL,
     prompt_template=sys_prompt_template)
 
+print(chat_llm.run(input="What is the capital of France?"))
+
