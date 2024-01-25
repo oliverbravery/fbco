@@ -4,7 +4,7 @@ class PropertyType(Enum):
     STRING = 'string'
     NUMBER = 'number'
     BOOLEAN = 'boolean'
-    ARRAY = 'array'
+    LIST = 'list'
     
 class ParameterType(Enum):
     OBJECT = 'object'
